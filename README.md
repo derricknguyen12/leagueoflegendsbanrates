@@ -1,1 +1,1 @@
-League of Legends Ban Rates of Champions Analysis
+# League of Legends Ban Rates of Champions Analysis
