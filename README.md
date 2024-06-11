@@ -33,6 +33,31 @@ Our dataset comprises 80,904 rows and 17 columns. The key columns we are using i
 
 This comprehensive dataset allows us to conduct a detailed analysis to answer our research question and provide valuable insights for League of Legends players.
 
+## Data Cleaning and Exploratory Data Analysis
+
+### Cleaned Data
+
+To optimize our data cleaning workflow, we initially filtered the dataset to retain only the relevant columns: 'champion', 'ban1', 'ban2', 'ban3', 'ban4', 'ban5', 'pick1', 'pick2', 'pick3', 'pick4', 'pick5', 'result', 'participantid', 'teamname', 'gameid', and 'league'. Each game entry consists of 12 rows, with 10 rows representing individual player data and 2 rows summarizing team performance and outcome. We preserved all rows as they are integral for our analysis.
+
+Subsequently, we divided the dataset into two separate dataframes: one for teams and another for players. This division was based on the 'participantid' column, where values greater than or equal to 100 were assigned to the team dataframe, while values less than 100 were assigned to the player dataframe. This distinction was made because player IDs range from 1 to 10, whereas team IDs range from 100 to 200. During this process, we removed certain columns with missing data, such as the 'champions' column from the team dataframe, as it does not make sense for a team to have selected only one champion.
+
+| league   | gameid    |   participantid | datacompleteness   | teamname            | ban1    | ban2       | ban3         | ban4    | ban5     | pick1     | pick2     | pick3   | pick4    | pick5      |   result |
+|:---------|:----------|----------------:|:-------------------|:--------------------|:--------|:-----------|:-------------|:--------|:---------|:----------|:----------|:--------|:---------|:-----------|---------:|
+| LPL      | 2899-3157 |             100 | complete           | Invictus Gaming     | Azir    | Malzahar   | Camille      | Illaoi  | Vladimir | Ornn      | Ezreal    | Orianna | Kha'Zix  | Tahm Kench |        1 |
+| LPL      | 2899-3157 |             200 | complete           | Royal Never Give Up | Zoe     | Kalista    | Miss Fortune | Lee Sin | Alistar  | Ryze      | Jarvan IV | Braum   | Vayne    | Maokai     |        0 |
+| LPL      | 2899-3158 |             100 | complete           | Royal Never Give Up | Zoe     | Tahm Kench | Miss Fortune | Kha'Zix | Lee Sin  | Jarvan IV | Ryze      | Alistar | Vladimir | Tristana   |        1 |
+| LPL      | 2899-3158 |             200 | complete           | Invictus Gaming     | Camille | Ornn       | Malzahar     | Ezreal  | Jhin     | Kalista   | Azir      | Braum   | Ivern    | Maokai     |        0 |
+| LPL      | 2899-3159 |             100 | complete           | Invictus Gaming     | Azir    | Malzahar   | Camille      | Illaoi  | Vladimir | Ornn      | Kha'Zix   | Ezreal  | Taliyah  | Leona      |        0 |
+
+| league   | gameid    |   participantid | datacompleteness   | teamname        | champion   | ban1   | ban2     | ban3    | ban4   | ban5     |   result |
+|:---------|:----------|----------------:|:-------------------|:----------------|:-----------|:-------|:---------|:--------|:-------|:---------|---------:|
+| LPL      | 2899-3157 |               1 | complete           | Invictus Gaming | Ornn       | Azir   | Malzahar | Camille | Illaoi | Vladimir |        1 |
+| LPL      | 2899-3157 |               2 | complete           | Invictus Gaming | Kha'Zix    | Azir   | Malzahar | Camille | Illaoi | Vladimir |        1 |
+| LPL      | 2899-3157 |               3 | complete           | Invictus Gaming | Orianna    | Azir   | Malzahar | Camille | Illaoi | Vladimir |        1 |
+| LPL      | 2899-3157 |               4 | complete           | Invictus Gaming | Ezreal     | Azir   | Malzahar | Camille | Illaoi | Vladimir |        1 |
+| LPL      | 2899-3157 |               5 | complete           | Invictus Gaming | Tahm Kench | Azir   | Malzahar | Camille | Illaoi | Vladimir |        1 |
+
+### Univariate Analysis
 
 
 
