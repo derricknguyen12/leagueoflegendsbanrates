@@ -107,3 +107,57 @@ Aggregate DataFrame:
 | True        | 0.500743 |    642.476 |
 
 We first classified whether or not a champion would be considered who is frequently banned, then we chose this threshold to be 100. For example, if a champion were to be banned over 300 times in our dataset, then they would be considered as a banned champion. Then we groupby this classification to see the average win rate and banned rate between these 2 groups. Champions who are classifed as banned have a higher win rate.
+
+## Assessment of Missingness
+
+### NMAR Analysis
+
+In our data we believe that columns ban1, ban2, ban3, ban4, ban5 contains some NMAR(not missing at random) because in League of Legends, a team can decide to choose if they want to ban a character or pass and not ban anyone depending on their strategy for the game.
+
+### Missingness Dependency
+
+In this part, we are going to test if the missingness of bans columns depends on other columns. The two other columns that we used are league and bans1-5. The significance level we choose for both permutation tests is 0.5, and the test statistic is Total Variance Distance (TVD).
+
+First, we perform the permutation test on bans and league, and the missingness of bans on league.
+
+Null Hypothesis: Distribution of league when bans is missing is the same as the distribution of league when bans is not missing.
+
+Alternative Hypothesis: Distribution of league when bans is missing is NOT same as the distribution of league when bans is not missing.
+
+Below is the observed distribution of league when bans is missing and not missing with the first 15 rows of our dataframe.
+
+| gameid    | league   |   participantid | datacompleteness   | teamname        | ban1   | ban2   | ban3   | ban4   | ban5   |   result |   nonban_rate | is_missing   |
+|:----------|:---------|----------------:|:-------------------|:----------------|:-------|:-------|:-------|:-------|:-------|---------:|--------------:|:-------------|
+| 2885-3123 | DCup     |             100 | partial            | JD Gaming       | True   | True   | True   | True   | True   |        0 |             1 | True         |
+| 2885-3123 | DCup     |             200 | partial            | Invictus Gaming | True   | True   | True   | True   | True   |        1 |             1 | True         |
+| 2885-3124 | DCup     |             100 | partial            | Invictus Gaming | False  | False  | False  | False  | False  |        1 |             0 | False        |
+| 2885-3124 | DCup     |             200 | partial            | JD Gaming       | False  | False  | False  | False  | False  |        0 |             0 | False        |
+| 2886-3125 | DCup     |             100 | partial            | Bilibili Gaming | False  | False  | False  | False  | False  |        0 |             0 | False        |
+| 2886-3125 | DCup     |             200 | partial            | Snake Esports   | False  | False  | False  | False  | False  |        1 |             0 | False        |
+| 2886-3126 | DCup     |             100 | partial            | Snake Esports   | False  | False  | False  | False  | False  |        1 |             0 | False        |
+| 2886-3126 | DCup     |             200 | partial            | Bilibili Gaming | False  | False  | False  | False  | False  |        0 |             0 | False        |
+| 2887-3127 | DCup     |             100 | partial            | Rogue Warriors  | False  | False  | False  | False  | False  |        0 |             0 | False        |
+| 2887-3127 | DCup     |             200 | partial            | EDward Gaming   | False  | False  | False  | False  | False  |        1 |             0 | False        |
+| 2887-3128 | DCup     |             100 | partial            | EDward Gaming   | False  | False  | False  | False  | False  |        1 |             0 | False        |
+| 2887-3128 | DCup     |             200 | partial            | Rogue Warriors  | False  | False  | False  | False  | False  |        0 |             0 | False        |
+| 2888-3129 | DCup     |             100 | partial            | Suning          | False  | False  | False  | False  | False  |        0 |             0 | False        |
+| 2888-3129 | DCup     |             200 | partial            | Team WE         | False  | False  | False  | False  | False  |        1 |             0 | False        |
+| 2888-3130 | DCup     |             100 | partial            | Team WE         | True   | True   | True   | True   | True   |        1 |             1 | True         |
+
+After we performed permutation tests, we found that the observed statistic for this permutation test is: 0.33373048634043834, and the p-value is 0. The plot below shows the empirical distribution of the TVD for the test.
+
+# Add 1st empirical graph here
+
+Since the p-value is less than the 0.05 significance level, we reject the null hypothesis. Thus, the missingness of banned champions depends on the league column.
+
+The second permutation test that we are performing is on bans and result, and the missingness of bans does not depend on result.
+
+Null Hypothesis: Distribution of result when bans is missing is the same as the distribution of result when bans is not missing.
+
+Alternative Hypothesis: Distribution of result when bans is missing is NOT same as the distribution of result when bans is not missing.
+
+After we performed permutation tests, we found that the observed statistic for this permutation test is: 0.04082295106574599, and the p-value is 0.346. The plot below shows the empirical distribution of the TVD for the test.
+
+# Add 2nd empirical graph here
+
+Since our p-value .309 > 0.05, we fail to reject null hypothesis. We cannot claim that there is a relationship between missingness and result. Thus, the missingness of bans does not depend on the result column.
