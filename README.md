@@ -43,13 +43,13 @@ Subsequently, we divided the dataset into two separate dataframes: one for teams
 
 #### Team Dafaframe:
 
-| league   | gameid    |   participantid | datacompleteness   | teamname            | ban1    | ban2       | ban3         | ban4    | ban5     | pick1     | pick2     | pick3   | pick4    | pick5      |   result |
-|:---------|:----------|----------------:|:-------------------|:--------------------|:--------|:-----------|:-------------|:--------|:---------|:----------|:----------|:--------|:---------|:-----------|---------:|
-| LPL      | 2899-3157 |             100 | complete           | Invictus Gaming     | Azir    | Malzahar   | Camille      | Illaoi  | Vladimir | Ornn      | Ezreal    | Orianna | Kha'Zix  | Tahm Kench |        1 |
-| LPL      | 2899-3157 |             200 | complete           | Royal Never Give Up | Zoe     | Kalista    | Miss Fortune | Lee Sin | Alistar  | Ryze      | Jarvan IV | Braum   | Vayne    | Maokai     |        0 |
-| LPL      | 2899-3158 |             100 | complete           | Royal Never Give Up | Zoe     | Tahm Kench | Miss Fortune | Kha'Zix | Lee Sin  | Jarvan IV | Ryze      | Alistar | Vladimir | Tristana   |        1 |
-| LPL      | 2899-3158 |             200 | complete           | Invictus Gaming     | Camille | Ornn       | Malzahar     | Ezreal  | Jhin     | Kalista   | Azir      | Braum   | Ivern    | Maokai     |        0 |
-| LPL      | 2899-3159 |             100 | complete           | Invictus Gaming     | Azir    | Malzahar   | Camille      | Illaoi  | Vladimir | Ornn      | Kha'Zix   | Ezreal  | Taliyah  | Leona      |        0 |
+| league   | gameid    |   participantid | datacompleteness   | teamname            | ban1    | ...     | ban5     | pick1     | pick2     | pick3   | pick4    | pick5      |   result |
+|:---------|:----------|----------------:|:-------------------|:--------------------|:--------|:--------|:---------|:----------|:----------|:--------|:---------|:-----------|---------:|
+| LPL      | 2899-3157 |             100 | complete           | Invictus Gaming     | Azir    | ...     | Vladimir | Ornn      | Ezreal    | Orianna | Kha'Zix  | Tahm Kench |        1 |
+| LPL      | 2899-3157 |             200 | complete           | Royal Never Give Up | Zoe     | ...     | Alistar  | Ryze      | Jarvan IV | Braum   | Vayne    | Maokai     |        0 |
+| LPL      | 2899-3158 |             100 | complete           | Royal Never Give Up | Zoe     | ...     | Lee Sin  | Jarvan IV | Ryze      | Alistar | Vladimir | Tristana   |        1 |
+| LPL      | 2899-3158 |             200 | complete           | Invictus Gaming     | Camille | ...     | Jhin     | Kalista   | Azir      | Braum   | Ivern    | Maokai     |        0 |
+| LPL      | 2899-3159 |             100 | complete           | Invictus Gaming     | Azir    | ...     | Vladimir | Ornn      | Kha'Zix   | Ezreal  | Taliyah  | Leona      |        0 |
 
 #### Player Dataframe:
 
@@ -67,7 +67,7 @@ We executed univariate analysis on the champions winrate in this dataset.
 
 <iframe
   src="assets/Champion_Win_Rate.html"
-  width="1500"
+  width="1250"
   height="600"
   frameborder="0"
 ></iframe>
@@ -78,7 +78,7 @@ We also made a bar chart for the ban rates of champions in this data set.
 
 <iframe
   src="assets/Banned_Champion_Counts.html"
-  width="1500"
+  width="1250"
   height="600"
   frameborder="0"
 ></iframe>
