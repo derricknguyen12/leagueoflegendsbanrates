@@ -190,7 +190,6 @@ Reason for Selection: The primary objective is to determine the league classific
 `Metric`: Accuracy
 Reason for Selection:
 Ease of Interpretation: Accuracy is a straightforward metric that represents the proportion of correct predictions out of the total predictions. This simplicity makes it easy to interpret and communicate the model's performance.
-Suitability: Given that our classification problem is balanced, accuracy is an appropriate metric. 
 
 `Justification of Features`
 
@@ -211,3 +210,25 @@ This is the first 5 rows of the dataframe that we are using in this section:
 Our baseline model is a decision tree with 6 features: league, teamkills, teamdeaths, ckpm, gamelength, and team kpm, and 2 hyperparameters: max_depth=50, criterion='entropy'. All 6 of our features were quantitative and we did not perform any encodings since we didn't have any categorical features. We chose max_depth = 50 because setting a maximum depth for the decision tree helps control overfitting. A deeper tree can model the training data more precisely, but it might also capture noise, leading to overfitting. A max_depth of 50 is relatively deep, allowing the tree to capture complex patterns in the data.
 
 After fitting the model, our accuracy score on the training data is 0.4434. This means that our model is able to correctly predict 44.34% of data. The accuracy is what it is due to our data being unbalanced. Our model still has large improvement space, and we will improve it through adding more features, and tuning hyperparameters in the next section.
+
+## Final Model
+
+In our final model, we introduced two additional features: teamname and dragons. We included these features because in League of Legends (LOL), the team name can be significant for predicting the league, as each league has a specific set of teams, making their names potentially helpful. Additionally, the number of dragons killed during a game is a crucial factor in determining the game's outcome. We aim to assess whether higher leagues tend to kill more or fewer dragons and how this affects league prediction.
+
+Our final model employs a Random Forest Classifier, consistent with our baseline model. The two newly added features include one categorical feature (team name) and one quantitative feature (dragons), for which we used OneHotEncoder to perform the necessary encodings. For hyperparameter tuning, we focused on three parameters: max depth, max features, and the number of estimators for the random forest classifier.
+
+We chose to tune max_depth because it controls the maximum depth of the tree. Limiting the tree's depth can help reduce overfitting, especially when the training data contains many features or noise. By exploring different values for max_depth, we aim to find the optimal depth that balances model complexity and performance, ensuring the model generalizes well to unseen data.
+
+We decided to tune max_features because it controls the number of features considered when looking for the best split at each node. This can help reduce overfitting and improve the model's performance by introducing more randomness into the model-building process. By experimenting with strategies like 'sqrt' or 'log2', we aim to determine the optimal number of features for the model to consider, enhancing accuracy and robustness.
+
+We opted to tune n_estimators because it determines the number of trees in the forest. Increasing the number of trees generally improves model performance by reducing variance and helping the model generalize better. However, more trees also result in longer training times and potentially diminishing returns beyond a certain point. By trying different values for n_estimators, we aim to strike a balance between model performance and computational efficiency.
+
+After conducting a GridSearchCV, the best hyperparameters we identified were:
+
+'randomforestclassifier__max_depth': None
+'randomforestclassifier__max_features': 'log2'
+'randomforestclassifier__n_estimators': 300
+
+With these hyperparameters, our model achieved an accuracy score of 0.9212, correctly predicting 92.12% of the data. This substantial improvement in evaluation metrics suggests that our model adjustments have effectively enhanced its predictive power.
+
+
