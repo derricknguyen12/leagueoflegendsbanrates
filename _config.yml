@@ -1,8 +1,7 @@
 title: League of Legends Ban Rates of Champions Analysis
-Authors: Derrick Nguyen and Eric Cheng
 
 description: |
-  The League of Legends Ban Rates of Champions Analysis is an in-depth data science project conducted at UCSD that dives into multiple factors of the game. This project includes stages such as exploratory data analysis, hypothesis testing, baseline model development, and a concluding a fairness assessment. The primary goal is to comprehend how the ban rates of different champions impact overall statistics and results in League of Legends.
+  Authors: Derrick Nguyen and Eric Cheng
 
 remote_theme: pages-themes/dinky@v0.2.0
 plugins:
