@@ -101,9 +101,9 @@ According to our plot, there is a postive correlation between pick rate and ban 
 ### Interesting Aggregates
 Aggregate DataFrame:
 
-|   result |   banrates |
-|---------:|-----------:|
-| 0.453945 |     30.875 |
-| 0.500743 |    642.476 |
+| is_banned   |   result |   banrates |
+|:------------|---------:|-----------:|
+| False       | 0.453945 |     30.875 |
+| True        | 0.500743 |    642.476 |
 
 We first classified whether or not a champion would be considered who is frequently banned, then we chose this threshold to be 100. For example, if a champion were to be banned over 300 times in our dataset, then they would be considered as a banned champion. Then we groupby this classification to see the average win rate and banned rate between these 2 groups. Champions who are classifed as banned have a higher win rate.
