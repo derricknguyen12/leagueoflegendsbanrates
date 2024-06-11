@@ -14,7 +14,7 @@ This predictive model has the potential to enhance strategic decision-making, op
 
 ### Introduction of Columns
 
-Our dataset revolves around the game of League of Legends, and we are investigating the most frequently banned champions to determine if their ban rates correlate with higher win rates compared to champions that are not frequently banned. ** Our main research question is: Do champions that are often banned have a higher win rate than those who are not banned? **
+Our dataset revolves around the game of League of Legends, and we are investigating the most frequently banned champions to determine if their ban rates correlate with higher win rates compared to champions that are not frequently banned. Our main research question is: **Do champions that are often banned have a higher win rate than those who are not banned?**
 
 This analysis is relevant to our readers because, if you are visiting our website, you are likely interested in playing League of Legends and would benefit from knowing which champions are more effective to use.
 
@@ -40,3 +40,13 @@ Our dataset comprises 80,904 rows and 17 columns. The key columns we are using i
 
 This comprehensive dataset allows us to conduct a detailed analysis to answer our research question and provide valuable insights for League of Legends players.
 
+
+
+
+
+<iframe
+  src="assets/Pick_vs_Ban_vs_Win_Rate.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
