@@ -116,6 +116,7 @@ To classify whether or not a champion would be considered as someone who is freq
 In our data we believe that columns `ban1`, `ban2`, `ban3`, `ban4`, `ban5` contains some NMAR(not missing at random) because in League of Legends, a team can decide to choose if they want to ban a character or pass and not ban anyone depending on their strategy for the game.
 
 ### Missingness Dependency
+#### Ban Missingness on League
 
 In this part, we are going to test if the missingness of bans columns depends on other columns. The two other columns that we used are `league` and `bans1-5`. The significance level we choose for both permutation tests is 0.05, and the test statistic is Total Variance Distance (TVD).
 
@@ -156,7 +157,8 @@ After we performed permutation tests, we found that the observed statistic for t
 
 Since the p-value is less than the 0.05 significance level, we reject the null hypothesis. Thus, the missingness of banned champions depends on the league column.
 
-The second permutation test that we are performing is on bans and result, and the missingness of bans does not depend on result.
+#### Ban Missingness on Result
+The second permutation test that we are performing is on bans and result.
 
 `Null Hypothesis`: Distribution of result when bans is missing is the same as the distribution of result when bans is not missing.
 
@@ -175,7 +177,7 @@ Since our p-value .309 > 0.05, we fail to reject null hypothesis. We cannot clai
 
 ## Hypothesis Testing
 
-In our hypothesis test, we aim to evaluate whether there is a significant difference in the distribution of banned vs non-banned champions and the final game outcome, specifically if teams with more banned champions tend to have a higher win rate. This investigation is crucial for understanding the relationship between the banned champions in a League of Legends match and the subsequent gameplay dynamics, particularly concerning the champions used by winning teams.
+We saw in the interesting aggregates section that the winrate of frequently banned champions is a bit higher than that of less-frequently banned champions. To see if this difference is significant, we will conduct a one-sided hypothesis test.
 
 `Null`: The winrate for banned and non-banned characters is the same.
 
