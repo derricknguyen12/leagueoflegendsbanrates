@@ -39,7 +39,7 @@ This comprehensive dataset allows us to conduct a detailed analysis to answer ou
 
 To optimize our data cleaning workflow, we initially filtered the dataset to retain only the relevant columns: 'champion', 'ban1', 'ban2', 'ban3', 'ban4', 'ban5', 'pick1', 'pick2', 'pick3', 'pick4', 'pick5', 'result', 'participantid', 'teamname', 'gameid', and 'league'. Each game entry consists of 12 rows, with 10 rows representing individual player data and 2 rows summarizing team performance and outcome. We preserved all rows as they are integral for our analysis.
 
-Subsequently, we divided the dataset into two separate dataframes: one for teams and another for players. This division was based on the 'participantid' column, where values greater than or equal to 100 were assigned to the team dataframe, while values less than 100 were assigned to the player dataframe. This distinction was made because player IDs range from 1 to 10, whereas team IDs range from 100 to 200. During this process, we removed certain columns with missing data, such as the 'champions' column from the team dataframe, as it does not make sense for a team to have selected only one champion.
+Subsequently, we divided the dataset into two separate dataframes: one for teams and another for players. This division was based on the 'participantid' column as player IDs range from 1 to 10, whereas team IDs take the value 100 or 200. This distinction allows us to analyze the data in the scope of the team and the player separately. During this process, we removed certain columns with missing data, such as the 'champions' column from the team dataframe, as by design, a *team* cannot select a champion.
 
 #### Team Dafaframe:
 
@@ -53,17 +53,20 @@ Subsequently, we divided the dataset into two separate dataframes: one for teams
 
 #### Player Dataframe:
 
-| league   | gameid    |   participantid | datacompleteness   | teamname        | champion   | ban1   | ban2     | ban3    | ban4   | ban5     |   result |
-|:---------|:----------|----------------:|:-------------------|:----------------|:-----------|:-------|:---------|:--------|:-------|:---------|---------:|
-| LPL      | 2899-3157 |               1 | complete           | Invictus Gaming | Ornn       | Azir   | Malzahar | Camille | Illaoi | Vladimir |        1 |
-| LPL      | 2899-3157 |               2 | complete           | Invictus Gaming | Kha'Zix    | Azir   | Malzahar | Camille | Illaoi | Vladimir |        1 |
-| LPL      | 2899-3157 |               3 | complete           | Invictus Gaming | Orianna    | Azir   | Malzahar | Camille | Illaoi | Vladimir |        1 |
-| LPL      | 2899-3157 |               4 | complete           | Invictus Gaming | Ezreal     | Azir   | Malzahar | Camille | Illaoi | Vladimir |        1 |
-| LPL      | 2899-3157 |               5 | complete           | Invictus Gaming | Tahm Kench | Azir   | Malzahar | Camille | Illaoi | Vladimir |        1 |
+| league   | gameid    |   participantid | datacompleteness   | teamname        | champion   |   result |
+|:---------|:----------|----------------:|:-------------------|:----------------|:-----------|---------:|
+| LPL      | 2899-3157 |               1 | complete           | Invictus Gaming | Ornn       |        1 |
+| LPL      | 2899-3157 |               2 | complete           | Invictus Gaming | Kha'Zix    |        1 |
+| LPL      | 2899-3157 |               3 | complete           | Invictus Gaming | Orianna    |        1 |
+| LPL      | 2899-3157 |               4 | complete           | Invictus Gaming | Ezreal     |        1 |
+| LPL      | 2899-3157 |               5 | complete           | Invictus Gaming | Tahm Kench |        1 |
 
 ### Univariate Analysis
 
-We executed univariate analysis on the champions winrate in this dataset.
+We executed univariate analysis on the champions winrate in this dataset. Win rate was calculated as such:
+$$
+ \text{Win Rate(Champion)} = \frac{\text{Games Won_{Champion}}}{\text{Games Played_{Champion}}}
+$$
 
 <iframe
   src="assets/Champion_Win_Rate.html"
