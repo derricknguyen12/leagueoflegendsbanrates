@@ -41,6 +41,8 @@ To optimize our data cleaning workflow, we initially filtered the dataset to ret
 
 Subsequently, we divided the dataset into two separate dataframes: one for teams and another for players. This division was based on the 'participantid' column, where values greater than or equal to 100 were assigned to the team dataframe, while values less than 100 were assigned to the player dataframe. This distinction was made because player IDs range from 1 to 10, whereas team IDs range from 100 to 200. During this process, we removed certain columns with missing data, such as the 'champions' column from the team dataframe, as it does not make sense for a team to have selected only one champion.
 
+#### Team Dafaframe:
+
 | league   | gameid    |   participantid | datacompleteness   | teamname            | ban1    | ban2       | ban3         | ban4    | ban5     | pick1     | pick2     | pick3   | pick4    | pick5      |   result |
 |:---------|:----------|----------------:|:-------------------|:--------------------|:--------|:-----------|:-------------|:--------|:---------|:----------|:----------|:--------|:---------|:-----------|---------:|
 | LPL      | 2899-3157 |             100 | complete           | Invictus Gaming     | Azir    | Malzahar   | Camille      | Illaoi  | Vladimir | Ornn      | Ezreal    | Orianna | Kha'Zix  | Tahm Kench |        1 |
@@ -48,6 +50,8 @@ Subsequently, we divided the dataset into two separate dataframes: one for teams
 | LPL      | 2899-3158 |             100 | complete           | Royal Never Give Up | Zoe     | Tahm Kench | Miss Fortune | Kha'Zix | Lee Sin  | Jarvan IV | Ryze      | Alistar | Vladimir | Tristana   |        1 |
 | LPL      | 2899-3158 |             200 | complete           | Invictus Gaming     | Camille | Ornn       | Malzahar     | Ezreal  | Jhin     | Kalista   | Azir      | Braum   | Ivern    | Maokai     |        0 |
 | LPL      | 2899-3159 |             100 | complete           | Invictus Gaming     | Azir    | Malzahar   | Camille      | Illaoi  | Vladimir | Ornn      | Kha'Zix   | Ezreal  | Taliyah  | Leona      |        0 |
+
+#### Player Dataframe:
 
 | league   | gameid    |   participantid | datacompleteness   | teamname        | champion   | ban1   | ban2     | ban3    | ban4   | ban5     |   result |
 |:---------|:----------|----------------:|:-------------------|:----------------|:-----------|:-------|:---------|:--------|:-------|:---------|---------:|
@@ -59,8 +63,31 @@ Subsequently, we divided the dataset into two separate dataframes: one for teams
 
 ### Univariate Analysis
 
+We executed univariate analysis on the champions winrate in this dataset.
 
+<iframe
+  src="assets/Champion_Win_Rate.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
+This bar chart displays the win rate for each character selected by players. 
+
+We also made a bar chart for the ban rates of champions in this data set.
+
+<iframe
+  src="assets/Banned_Champion_Counts.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+This bar chart shows the number of times each champion has been banned.
+
+### Bivariate Analysis
+
+We permformed bivariate analysis on the pick rate, ban rate, and win rate of the champions in the dataset to visualize.
 
 <iframe
   src="assets/Pick_vs_Ban_vs_Win_Rate.html"
@@ -68,3 +95,15 @@ Subsequently, we divided the dataset into two separate dataframes: one for teams
   height="600"
   frameborder="0"
 ></iframe>
+
+According to our plot, there is a postive correlation between pick rate and ban rate of the champions.
+
+### Interesting Aggregates
+Aggregate DataFrame:
+
+|   result |   banrates |
+|---------:|-----------:|
+| 0.453945 |     30.875 |
+| 0.500743 |    642.476 |
+
+We first classified whether or not a champion would be considered who is frequently banned, then we chose this threshold to be 100. For example, if a champion were to be banned over 300 times in our dataset, then they would be considered as a banned champion. Then we groupby this classification to see the average win rate and banned rate between these 2 groups. Champions who are classifed as banned have a higher win rate.
