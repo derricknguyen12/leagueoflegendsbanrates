@@ -67,7 +67,7 @@ We executed univariate analysis on the champions winrate in this dataset.
 
 <iframe
   src="assets/Champion_Win_Rate.html"
-  width="800"
+  width="1500"
   height="600"
   frameborder="0"
 ></iframe>
@@ -78,7 +78,7 @@ We also made a bar chart for the ban rates of champions in this data set.
 
 <iframe
   src="assets/Banned_Champion_Counts.html"
-  width="800"
+  width="1500"
   height="600"
   frameborder="0"
 ></iframe>
