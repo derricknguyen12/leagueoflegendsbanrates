@@ -176,3 +176,22 @@ In our hypothesis test, we aim to evaluate whether there is a significant differ
 
 Based on the hypothesis test performed, our p-value of 0.0123 is less than the significance level of 0.05. Therefore, we reject the null hypothesis that banned and non-banned champions have the same win rate. This result suggests that there is a statistically significant difference in win rates, with banned champions, on average, having a higher win rate than non-banned champions. This finding implies that the selection of banned champions could be strategically impactful, potentially influencing the overall success of teams in League of Legends matches.
 
+## Framing a Prediction Problem
+
+`Prediction Problem`: Are we able to predict the league based on game statistics? - Classification Problem
+
+`Type of Prediction Problem`: Multiclass Classification
+
+We are attempting to predict the league a game belongs to based on various game statistics. This is a multiclass classification problem because the target variable, League, can take on more than two distinct categories.
+
+`Response Variable`: League
+Reason for Selection: The primary objective is to determine the league classification from the given game statistics. Therefore, the League variable is the target variable we aim to predict.
+
+`Metric`: Accuracy
+Reason for Selection:
+Ease of Interpretation: Accuracy is a straightforward metric that represents the proportion of correct predictions out of the total predictions. This simplicity makes it easy to interpret and communicate the model's performance.
+Suitability: Given that our classification problem is balanced, accuracy is an appropriate metric. 
+
+`Justification of Features`
+
+At the time of prediction, we only know the following information for each league: teamkills, teamdeaths, ckpm, gamelength, team kpm. These are all the statistics collected during the game. We will train our model based on the above features.
