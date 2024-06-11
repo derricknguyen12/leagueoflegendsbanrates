@@ -63,8 +63,7 @@ Subsequently, we divided the dataset into two separate dataframes: one for teams
 
 ### Univariate Analysis
 
-We executed univariate analysis on every champions' winrate in this dataset using the Player Dataframe. Win rate was calculated as such:
-$$\text{Win Rate(Champion)} = \frac{\text{Games Won_{\text{Champion}}}}{\text{Games Played_{\text{Champion}}}}$$
+We executed univariate analysis on every champions' winrate in this dataset using the Player Dataframe.
 
 <iframe
   src="assets/Champion_Win_Rate.html"
@@ -73,7 +72,7 @@ $$\text{Win Rate(Champion)} = \frac{\text{Games Won_{\text{Champion}}}}{\text{Ga
   frameborder="0"
 ></iframe>
 
-This bar chart displays the win rate as a ratio for each character selected by players. As we can see, most champions hover around $0.50$ winrate meaning that they equally win and lose games. There are some notable exceptions however, such as Lux with a $0.83$ winrate and Garen with a $0.00$ winrate. Note that winrate hides the number of games that a Champion has played in. For example, Garen was only seen in one game, of which was a loss.
+This bar chart displays the win rate as a ratio for each character selected by players. As we can see, most champions hover around 0.50 winrate meaning that they equally win and lose games. There are some notable exceptions however, such as Lux with a 0.83 winrate and Garen with a $0.00$ winrate. Note that winrate hides the number of games that a Champion has played in. For example, Garen was only seen in one game, of which was a loss.
 
 
 We also made a bar chart for the amount of games where champions were banned in this data set using the Team Dataframe. 
@@ -98,7 +97,7 @@ We permformed bivariate analysis on the pick counts, ban counts, and win rate of
   frameborder="0"
 ></iframe>
 
-Note that we log-scaled both axes to better visualize the data. Had we not, the majority of the data would be in the bottom left corner with some outliers to the top right. According to our plot, there is a postive correlation between pick rate and ban rate of the champions. Champions with high pick and ban rate also have an average winrate of about $50\%$, indicated by the homegeneous color of the data points. On the contrary, unpopular champions tend to have much higher variance in winrate, with a more diverse color palette. Another example of regression towards the mean.
+Note that we log-scaled both axes to better visualize the data. Had we not, the majority of the data would be in the bottom left corner with some outliers to the top right. According to our plot, there is a postive correlation between pick rate and ban rate of the champions. Champions with high pick and ban rate also have an average winrate of about 50%, indicated by the homegeneous color of the data points. On the contrary, unpopular champions tend to have much higher variance in winrate, with a more diverse color palette. Another example of regression towards the mean.
 
 ### Interesting Aggregates
 Aggregate DataFrame:
@@ -108,17 +107,17 @@ Aggregate DataFrame:
 | False       | 0.453945 |     30.875 |
 | True        | 0.500743 |    642.476 |
 
-To classify whether or not a champion would be considered as someone who is frequently banned, we arbitrarily decided that if a champion reaches threshold of 100 bans, they would be considered frequently banned. For example, if a champion were to be banned over 300 times in our dataset, then they would be considered as a banned champion. Then we groupby this classification to see the average win rate and banned rate between these 2 groups. Champions who are classifed as banned have a higher win rate.
+To classify whether or not a champion would be considered as someone who is frequently banned, we arbitrarily decided that if a champion reaches threshold of 100 bans, they would be considered frequently banned. For example, if a champion were to be banned over 300 times in our dataset, then they would be considered as a banned champion. Then we grouped by this classification to see the average win rate and banned rate between these 2 groups. From the table, we see that champions who are classifed as banned have a higher win rate than those who aren't as frequently banned.
 
 ## Assessment of Missingness
 
 ### NMAR Analysis
 
-In our data we believe that columns ban1, ban2, ban3, ban4, ban5 contains some NMAR(not missing at random) because in League of Legends, a team can decide to choose if they want to ban a character or pass and not ban anyone depending on their strategy for the game.
+In our data we believe that columns `ban1`, `ban2`, `ban3`, `ban4`, `ban5` contains some NMAR(not missing at random) because in League of Legends, a team can decide to choose if they want to ban a character or pass and not ban anyone depending on their strategy for the game.
 
 ### Missingness Dependency
 
-In this part, we are going to test if the missingness of bans columns depends on other columns. The two other columns that we used are league and bans1-5. The significance level we choose for both permutation tests is 0.5, and the test statistic is Total Variance Distance (TVD).
+In this part, we are going to test if the missingness of bans columns depends on other columns. The two other columns that we used are `league` and `bans1-5`. The significance level we choose for both permutation tests is 0.05, and the test statistic is Total Variance Distance (TVD).
 
 First, we perform the permutation test on bans and league, and the missingness of bans on league.
 
