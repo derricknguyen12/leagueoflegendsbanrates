@@ -195,3 +195,19 @@ Suitability: Given that our classification problem is balanced, accuracy is an a
 `Justification of Features`
 
 At the time of prediction, we only know the following information for each league: teamkills, teamdeaths, ckpm, gamelength, team kpm. These are all the statistics collected during the game. We will train our model based on the above features.
+
+## Baseline Model
+
+This is the first 5 rows of the dataframe that we are using in this section:
+
+| league   |   teamkills |   teamdeaths |   ckpm |   gamelength |   team kpm |
+|:---------|------------:|-------------:|-------:|-------------:|-----------:|
+| LPL      |          12 |            4 | 0.6038 |         1590 |     0.4528 |
+| LPL      |           4 |           12 | 0.6038 |         1590 |     0.1509 |
+| LPL      |          13 |            3 | 0.5707 |         1682 |     0.4637 |
+| LPL      |           3 |           13 | 0.5707 |         1682 |     0.107  |
+| LPL      |          11 |           21 | 0.8939 |         2148 |     0.3073 |
+
+Our baseline model is a decision tree with 6 features: league, teamkills, teamdeaths, ckpm, gamelength, and team kpm, and 2 hyperparameters: max_depth=50, criterion='entropy'. All 6 of our features were quantitative and we did not perform any encodings since we didn't have any categorical features. We chose max_depth = 50 because setting a maximum depth for the decision tree helps control overfitting. A deeper tree can model the training data more precisely, but it might also capture noise, leading to overfitting. A max_depth of 50 is relatively deep, allowing the tree to capture complex patterns in the data.
+
+After fitting the model, our accuracy score on the training data is 0.4434. This means that our model is able to correctly predict 44.34% of data. The accuracy is what it is due to our data being unbalanced. Our model still has large improvement space, and we will improve it through adding more features, and tuning hyperparameters in the next section.
