@@ -43,13 +43,13 @@ Subsequently, we divided the dataset into two separate dataframes: one for teams
 
 #### Team Dafaframe:
 
-| league   | gameid    |   participantid | datacompleteness   | teamname            | ban1    | ...     | ban5     | pick1     | pick2     | pick3   | pick4    | pick5      |   result |
-|:---------|:----------|----------------:|:-------------------|:--------------------|:--------|:--------|:---------|:----------|:----------|:--------|:---------|:-----------|---------:|
-| LPL      | 2899-3157 |             100 | complete           | Invictus Gaming     | Azir    | ...     | Vladimir | Ornn      | Ezreal    | Orianna | Kha'Zix  | Tahm Kench |        1 |
-| LPL      | 2899-3157 |             200 | complete           | Royal Never Give Up | Zoe     | ...     | Alistar  | Ryze      | Jarvan IV | Braum   | Vayne    | Maokai     |        0 |
-| LPL      | 2899-3158 |             100 | complete           | Royal Never Give Up | Zoe     | ...     | Lee Sin  | Jarvan IV | Ryze      | Alistar | Vladimir | Tristana   |        1 |
-| LPL      | 2899-3158 |             200 | complete           | Invictus Gaming     | Camille | ...     | Jhin     | Kalista   | Azir      | Braum   | Ivern    | Maokai     |        0 |
-| LPL      | 2899-3159 |             100 | complete           | Invictus Gaming     | Azir    | ...     | Vladimir | Ornn      | Kha'Zix   | Ezreal  | Taliyah  | Leona      |        0 |
+| league   | gameid    |   participantid | datacompleteness   | teamname            | ban1    | ...     | ban5     | pick1     | ...    | pick5      |   result |
+|:---------|:----------|----------------:|:-------------------|:--------------------|:--------|:--------|:---------|:----------|:-------|:-----------|---------:|
+| LPL      | 2899-3157 |             100 | complete           | Invictus Gaming     | Azir    | ...     | Vladimir | Ornn      | ...    | Tahm Kench |        1 |
+| LPL      | 2899-3157 |             200 | complete           | Royal Never Give Up | Zoe     | ...     | Alistar  | Ryze      | ...    | Maokai     |        0 |
+| LPL      | 2899-3158 |             100 | complete           | Royal Never Give Up | Zoe     | ...     | Lee Sin  | Jarvan IV | ...    | Tristana   |        1 |
+| LPL      | 2899-3158 |             200 | complete           | Invictus Gaming     | Camille | ...     | Jhin     | Kalista   | ...    | Maokai     |        0 |
+| LPL      | 2899-3159 |             100 | complete           | Invictus Gaming     | Azir    | ...     | Vladimir | Ornn      | ...    | Leona      |        0 |
 
 #### Player Dataframe:
 
@@ -146,7 +146,12 @@ Below is the observed distribution of league when bans is missing and not missin
 
 After we performed permutation tests, we found that the observed statistic for this permutation test is: 0.33373048634043834, and the p-value is 0. The plot below shows the empirical distribution of the TVD for the test.
 
-# Add 1st empirical graph here
+<iframe
+  src="assets/Permuted_Distribution_of_TVDs_of_Bans_Missingness_and_League.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 Since the p-value is less than the 0.05 significance level, we reject the null hypothesis. Thus, the missingness of banned champions depends on the league column.
 
@@ -158,7 +163,12 @@ The second permutation test that we are performing is on bans and result, and th
 
 After we performed permutation tests, we found that the observed statistic for this permutation test is: 0.04082295106574599, and the p-value is 0.346. The plot below shows the empirical distribution of the TVD for the test.
 
-# Add 2nd empirical graph here
+<iframe
+  src="assets/Permuted_Distribution_of_TVDs_of_Missingness_of_Bans_and_Wins.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 Since our p-value .309 > 0.05, we fail to reject null hypothesis. We cannot claim that there is a relationship between missingness and result. Thus, the missingness of bans does not depend on the result column.
 
@@ -173,6 +183,13 @@ In our hypothesis test, we aim to evaluate whether there is a significant differ
 `Test Statistic`: Difference of means between characters with high ban rates and low ban rates.
 
 `Significance Level`: 5%
+
+<iframe
+  src="assets/Permuted_Distribution_of_Differences_of_Mean_Wins_and_NonBan_rate.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 Based on the hypothesis test performed, our p-value of 0.0123 is less than the significance level of 0.05. Therefore, we reject the null hypothesis that banned and non-banned champions have the same win rate. This result suggests that there is a statistically significant difference in win rates, with banned champions, on average, having a higher win rate than non-banned champions. This finding implies that the selection of banned champions could be strategically impactful, potentially influencing the overall success of teams in League of Legends matches.
 
