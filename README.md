@@ -21,16 +21,15 @@ Our dataset revolves around the game of League of Legends, and we are investigat
 This analysis is relevant to our readers because, if you are visiting our website, you are likely interested in playing League of Legends and would benefit from knowing which champions are more effective to use.
 
 Our dataset comprises 80,904 rows and 17 columns. The key columns we are using include:
-
-champion: The name of the champion that players pick and play with.
-ban1, ban2, ban3, ban4, ban5: The names of the champions that are banned.
-pick1, pick2, pick3, pick4, pick5: The names of the champions that are picked to be used in the game.
-result: Indicates whether the picked champion won or lost the game (0 for a loss, 1 for a win).
-participantid: Index of player/team.
-datacompleteness: Indicates the presence of missing values.
-teamname: The names of the teams that are competing in their individual leagues.
-gameid: The id or reference number of the game that is being played.
-league: The name of the league that the players are playing in.
+- `champion`: The name of the champion that players pick and play with.
+- `ban1, ban2, ban3, ban4, ban5`: The names of the champions that are banned.
+- `pick1, pick2, pick3, pick4, pick5`: The names of the champions that are picked to be used in the game.
+- `result`: Indicates whether the picked champion won or lost the game (0 for a loss, 1 for a win).
+- `participantid`: Index of player/team.
+- `datacompleteness`: Indicates the presence of missing values.
+- `teamname`: The names of the teams that are competing in their individual leagues.
+- `gameid`: The id or reference number of the game that is being played.
+- `league`: The name of the league that the players are playing in.
 
 This comprehensive dataset allows us to conduct a detailed analysis to answer our research question and provide valuable insights for League of Legends players.
 
