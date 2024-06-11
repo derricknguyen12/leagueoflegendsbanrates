@@ -63,10 +63,8 @@ Subsequently, we divided the dataset into two separate dataframes: one for teams
 
 ### Univariate Analysis
 
-We executed univariate analysis on the champions winrate in this dataset. Win rate was calculated as such:
-$$
- \text{Win Rate(Champion)} = \frac{\text{Games Won_{Champion}}}{\text{Games Played_{Champion}}}
-$$
+We executed univariate analysis on every champions' winrate in this dataset using the Player Dataframe. Win rate was calculated as such:
+$$\text{Win Rate(Champion)} = \frac{\text{Games Won_{\text{Champion}}}}{\text{Games Played_{\text{Champion}}}}$$
 
 <iframe
   src="assets/Champion_Win_Rate.html"
@@ -75,9 +73,10 @@ $$
   frameborder="0"
 ></iframe>
 
-This bar chart displays the win rate for each character selected by players. 
+This bar chart displays the win rate as a ratio for each character selected by players. As we can see, most champions hover around $0.50$ winrate meaning that they equally win and lose games. There are some notable exceptions however, such as Lux with a $0.83$ winrate and Garen with a $0.00$ winrate. Note that winrate hides the number of games that a Champion has played in. For example, Garen was only seen in one game, of which was a loss.
 
-We also made a bar chart for the ban rates of champions in this data set.
+
+We also made a bar chart for the amount of games where champions were banned in this data set using the Team Dataframe. 
 
 <iframe
   src="assets/Banned_Champion_Counts.html"
@@ -86,11 +85,11 @@ We also made a bar chart for the ban rates of champions in this data set.
   frameborder="0"
 ></iframe>
 
-This bar chart shows the number of times each champion has been banned.
+This bar chart shows the number of times each champion has been banned. Camillie, Taliyah, and Zoe are the most frequently banned champions, with each over 2000 games in which they were banned.
 
 ### Bivariate Analysis
 
-We permformed bivariate analysis on the pick rate, ban rate, and win rate of the champions in the dataset to visualize.
+We permformed bivariate analysis on the pick counts, ban counts, and win rate of the champions in the dataset to visualize in the form a scatter plot.
 
 <iframe
   src="assets/Pick_vs_Ban_vs_Win_Rate.html"
@@ -99,7 +98,7 @@ We permformed bivariate analysis on the pick rate, ban rate, and win rate of the
   frameborder="0"
 ></iframe>
 
-According to our plot, there is a postive correlation between pick rate and ban rate of the champions.
+Note that we log-scaled both axes to better visualize the data. Had we not, the majority of the data would be in the bottom left corner with some outliers to the top right. According to our plot, there is a postive correlation between pick rate and ban rate of the champions. Champions with high pick and ban rate also have an average winrate of about $50\%$, indicated by the homegeneous color of the data points. On the contrary, unpopular champions tend to have much higher variance in winrate, with a more diverse color palette. Another example of regression towards the mean.
 
 ### Interesting Aggregates
 Aggregate DataFrame:
@@ -109,7 +108,7 @@ Aggregate DataFrame:
 | False       | 0.453945 |     30.875 |
 | True        | 0.500743 |    642.476 |
 
-We first classified whether or not a champion would be considered who is frequently banned, then we chose this threshold to be 100. For example, if a champion were to be banned over 300 times in our dataset, then they would be considered as a banned champion. Then we groupby this classification to see the average win rate and banned rate between these 2 groups. Champions who are classifed as banned have a higher win rate.
+To classify whether or not a champion would be considered as someone who is frequently banned, we arbitrarily decided that if a champion reaches threshold of 100 bans, they would be considered frequently banned. For example, if a champion were to be banned over 300 times in our dataset, then they would be considered as a banned champion. Then we groupby this classification to see the average win rate and banned rate between these 2 groups. Champions who are classifed as banned have a higher win rate.
 
 ## Assessment of Missingness
 
