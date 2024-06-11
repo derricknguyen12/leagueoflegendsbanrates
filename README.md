@@ -183,7 +183,7 @@ We saw in the interesting aggregates section that the winrate of frequently bann
 
 `Alternative`: The winrate for banned characters is higher than the winrate for non-banned characters.
 
-`Test Statistic`: Difference of means between characters with high ban rates and low ban rates.
+`Test Statistic`: Difference of mean winrate between characters with high ban rates and low ban rates.
 
 `Significance Level`: 5%
 
@@ -194,7 +194,7 @@ We saw in the interesting aggregates section that the winrate of frequently bann
   frameborder="0"
 ></iframe>
 
-Based on the hypothesis test performed, our p-value of 0.0123 is less than the significance level of 0.05. Therefore, we reject the null hypothesis that banned and non-banned champions have the same win rate. This result suggests that there is a statistically significant difference in win rates, with banned champions, on average, having a higher win rate than non-banned champions. This finding implies that the selection of banned champions could be strategically impactful, potentially influencing the overall success of teams in League of Legends matches.
+Based on the hypothesis test performed, our p-value of 0.0123 is less than the significance level of 0.05. Therefore, we reject the null hypothesis that banned and non-banned champions have the same win rate. This result suggests that there is a statistically significant difference in win rates, with banned champions, on average, having a higher win rate than non-banned champions. This finding implies that the selection of banned champions could be strategically impactful and does influence the overall success of teams in League of Legends matches.
 
 ## Framing a Prediction Problem
 
@@ -227,7 +227,7 @@ This is the first 5 rows of the dataframe that we are using in this section:
 | LPL      |           3 |           13 | 0.5707 |         1682 |     0.107  |
 | LPL      |          11 |           21 | 0.8939 |         2148 |     0.3073 |
 
-Our baseline model is a decision tree with 6 features: league, teamkills, teamdeaths, ckpm, gamelength, and team kpm, and 2 hyperparameters: max_depth=50, criterion='entropy'. All 6 of our features were quantitative and we did not perform any encodings since we didn't have any categorical features. We chose max_depth = 50 because setting a maximum depth for the decision tree helps control overfitting. A deeper tree can model the training data more precisely, but it might also capture noise, leading to overfitting. A max_depth of 50 is relatively deep, allowing the tree to capture complex patterns in the data.
+Our baseline model is a decision tree with 6 features: `league`, `teamkills`, `teamdeaths`, `ckpm`, `gamelength`, and `team kpm`, and 2 hyperparameters: `max_depth=50`, `criterion='entropy'`. All 6 of our features were quantitative and we did not perform any encodings since we didn't have any categorical features. We chose `max_depth = 50` because setting a maximum depth for the decision tree helps control overfitting. A deeper tree can model the training data more precisely, but it might also capture noise, leading to overfitting. We also found that smaller trees also had a terrible training and testing accuracy, likely due to underfitting. A `max_depth` of 50 is relatively deep, allowing the tree to capture complex patterns in the data.
 
 After fitting the model, our accuracy score on the training data is 0.4434. This means that our model is able to correctly predict 44.34% of data. The accuracy is what it is due to our data being unbalanced. Our model still has large improvement space, and we will improve it through adding more features, and tuning hyperparameters in the next section.
 
@@ -235,27 +235,27 @@ After fitting the model, our accuracy score on the training data is 0.4434. This
 
 In our final model, we introduced two additional features: teamname and dragons. We included these features because in League of Legends (LOL), the team name can be significant for predicting the league, as each league has a specific set of teams, making their names potentially helpful. Additionally, the number of dragons killed during a game is a crucial factor in determining the game's outcome. We aim to assess whether higher leagues tend to kill more or fewer dragons and how this affects league prediction.
 
-Our final model employs a Random Forest Classifier, consistent with our baseline model. The two newly added features include one categorical feature (team name) and one quantitative feature (dragons), for which we used OneHotEncoder to perform the necessary encodings. For hyperparameter tuning, we focused on three parameters: max depth, max features, and the number of estimators for the random forest classifier.
+Our final model employs a Random Forest Classifier instead of a decision tree. The two newly added features include one categorical feature (team name) and one quantitative feature (dragons), for which we used `OneHotEncoder` to perform the necessary encodings. For hyperparameter tuning, we focused on three parameters: max depth, max features, and the number of estimators for the random forest classifier.
 
-We chose to tune max_depth because it controls the maximum depth of the tree. Limiting the tree's depth can help reduce overfitting, especially when the training data contains many features or noise. By exploring different values for max_depth, we aim to find the optimal depth that balances model complexity and performance, ensuring the model generalizes well to unseen data.
+We chose to tune `max_depth` because it controls the maximum depth of the tree. Limiting the tree's depth can help reduce overfitting, especially when the training data contains many features or noise. By exploring different values for `max_depth`, we aim to find the optimal depth that balances model complexity and performance, ensuring the model generalizes well to unseen data.
 
-We decided to tune max_features because it controls the number of features considered when looking for the best split at each node. This can help reduce overfitting and improve the model's performance by introducing more randomness into the model-building process. By experimenting with strategies like 'sqrt' or 'log2', we aim to determine the optimal number of features for the model to consider, enhancing accuracy and robustness.
+We decided to tune `max_features` because it controls the number of features considered when looking for the best split at each node. This can help reduce overfitting and improve the model's performance by introducing more randomness into the model-building process. By experimenting with strategies like `sqrt` or `log2`, we aim to determine the optimal number of features for the model to consider, enhancing accuracy and robustness.
 
-We opted to tune n_estimators because it determines the number of trees in the forest. Increasing the number of trees generally improves model performance by reducing variance and helping the model generalize better. However, more trees also result in longer training times and potentially diminishing returns beyond a certain point. By trying different values for n_estimators, we aim to strike a balance between model performance and computational efficiency.
+We opted to tune `n_estimators` because it determines the number of trees in the forest. Increasing the number of trees generally improves model performance by reducing variance and helping the model generalize better. However, more trees also result in longer training times and potentially diminishing returns beyond a certain point. By trying different values for `n_estimators`, we aim to strike a balance between model performance and computational efficiency.
 
-After conducting a GridSearchCV, the best hyperparameters we identified were:
+After conducting a `GridSearchCV`, the best hyperparameters we identified were:
 
-- 'randomforestclassifier__max_depth': None
-- 'randomforestclassifier__max_features': 'log2'
-- 'randomforestclassifier__n_estimators': 300
+- `randomforestclassifier__max_depth`: None
+- `randomforestclassifier__max_features`: 'log2'
+- `randomforestclassifier__n_estimators`: 300
 
-With these hyperparameters, our model achieved an accuracy score of 0.9212, correctly predicting 92.12% of the data. This substantial improvement in evaluation metrics suggests that our model adjustments have effectively enhanced its predictive power.
+With these hyperparameters, our model achieved an testing accuracy score of 0.9212, correctly predicting 92.12% of the data. This substantial improvement in evaluation metrics suggests that our model adjustments have significantly enhanced its predictive power.
 
 ## Fairness Analysis
 
-In this section, we aim to evaluate the fairness of our model across different groups. Specifically, we seek to determine: `Does my model perform worse for teams that have killed 3 or fewer dragons during a game compared to teams that have killed more than 3 dragons during a game?` To address this question, we conducted a permutation test and analyzed the resulting difference in accuracy between the two groups.
+In this section, we aim to evaluate the fairness of our model across different groups. Because dragons can easily sway the outcome of a game, we suspected that the league in which aggressive teams that often go after dragons are easier to predict. Specifically, we seek to determine: *Does my model perform worse for teams that have killed 3 or fewer dragons during a game compared to teams that have killed more than 3 dragons during a game?* To address this question, we conducted a permutation test and analyzed the resulting difference in accuracy between the two groups.
 
-The group X represents the players who have dragon kills less than or equal to 3, and group Y represents those who have dragon kills greater than 3. Our evaluation metric is accuracy, and the significance level is 0.05.
+Our first group represents the players who have less than or equal to 3 dragon kills, and the other group represents those who have killed more than 3 dragons. Our evaluation metric is accuracy, and the significance level is 0.05.
 
 The followings are our hypothesis:
 
