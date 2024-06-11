@@ -120,9 +120,9 @@ In this part, we are going to test if the missingness of bans columns depends on
 
 First, we perform the permutation test on bans and league, and the missingness of bans on league.
 
-Null Hypothesis: Distribution of league when bans is missing is the same as the distribution of league when bans is not missing.
+`Null Hypothesis`: Distribution of league when bans is missing is the same as the distribution of league when bans is not missing.
 
-Alternative Hypothesis: Distribution of league when bans is missing is NOT same as the distribution of league when bans is not missing.
+`Alternative Hypothesis`: Distribution of league when bans is missing is NOT same as the distribution of league when bans is not missing.
 
 Below is the observed distribution of league when bans is missing and not missing with the first 15 rows of our dataframe.
 
@@ -152,12 +152,27 @@ Since the p-value is less than the 0.05 significance level, we reject the null h
 
 The second permutation test that we are performing is on bans and result, and the missingness of bans does not depend on result.
 
-Null Hypothesis: Distribution of result when bans is missing is the same as the distribution of result when bans is not missing.
+`Null Hypothesis`: Distribution of result when bans is missing is the same as the distribution of result when bans is not missing.
 
-Alternative Hypothesis: Distribution of result when bans is missing is NOT same as the distribution of result when bans is not missing.
+`Alternative Hypothesis`: Distribution of result when bans is missing is NOT same as the distribution of result when bans is not missing.
 
 After we performed permutation tests, we found that the observed statistic for this permutation test is: 0.04082295106574599, and the p-value is 0.346. The plot below shows the empirical distribution of the TVD for the test.
 
 # Add 2nd empirical graph here
 
 Since our p-value .309 > 0.05, we fail to reject null hypothesis. We cannot claim that there is a relationship between missingness and result. Thus, the missingness of bans does not depend on the result column.
+
+## Hypothesis Testing
+
+In our hypothesis test, we aim to evaluate whether there is a significant difference in the distribution of banned vs non-banned champions and the final game outcome, specifically if teams with more banned champions tend to have a higher win rate. This investigation is crucial for understanding the relationship between the banned champions in a League of Legends match and the subsequent gameplay dynamics, particularly concerning the champions used by winning teams.
+
+`Null`: The winrate for banned and non-banned characters is the same.
+
+`Alternative`: The winrate for banned characters is higher than the winrate for non-banned characters.
+
+`Test Statistic`: Difference of means between characters with high ban rates and low ban rates.
+
+`Significance Level`: 5%
+
+Based on the hypothesis test performed, our p-value of 0.0123 is less than the significance level of 0.05. Therefore, we reject the null hypothesis that banned and non-banned champions have the same win rate. This result suggests that there is a statistically significant difference in win rates, with banned champions, on average, having a higher win rate than non-banned champions. This finding implies that the selection of banned champions could be strategically impactful, potentially influencing the overall success of teams in League of Legends matches.
+
