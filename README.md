@@ -225,10 +225,24 @@ We opted to tune n_estimators because it determines the number of trees in the f
 
 After conducting a GridSearchCV, the best hyperparameters we identified were:
 
-'randomforestclassifier__max_depth': None
-'randomforestclassifier__max_features': 'log2'
-'randomforestclassifier__n_estimators': 300
+- 'randomforestclassifier__max_depth': None
+- 'randomforestclassifier__max_features': 'log2'
+- 'randomforestclassifier__n_estimators': 300
 
 With these hyperparameters, our model achieved an accuracy score of 0.9212, correctly predicting 92.12% of the data. This substantial improvement in evaluation metrics suggests that our model adjustments have effectively enhanced its predictive power.
 
+## Fairness Analysis
 
+In this section, we aim to evaluate the fairness of our model across different groups. Specifically, we seek to determine: `Does my model perform worse for teams that have killed 3 or fewer dragons during a game compared to teams that have killed more than 3 dragons during a game?` To address this question, we conducted a permutation test and analyzed the resulting difference in accuracy between the two groups.
+
+The group X represents the players who have dragon kills less than or equal to 3, and group Y represents those who have dragon kills greater than 3. Our evaluation metric is accuracy, and the significance level is 0.05.
+
+The followings are our hypothesis:
+
+`Null hypothesis`: Our model is fair. Its accuracy for teams who have less than or equal to 3 dragon kills is same as the accuracy for teams who have greater than 3 dragon kills.
+
+`Alternative hypothesis`: Our model is unfair. Its accuracy for teams who have less than or equal to 3 dragon kills is NOT same as the accuracy for teams who have greater than 3 dragon kills.
+
+`Test statistic`: difference in accuracy between teams who have dragon kills less than, equal to, or greater than 3.
+
+After conducting the permutation test, we obtained a p-value of 0.498, which is greater than the 0.05 significance level. As a result, we fail to reject the null hypothesis. This indicates that our model predicts teams from both groups with statistically similar accuracy levels. Therefore, our model appears to be fair, showing no discernible bias towards one group over the other.
