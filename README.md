@@ -72,7 +72,7 @@ We executed univariate analysis on every champions' winrate in this dataset usin
   frameborder="0"
 ></iframe>
 
-This bar chart displays the win rate as a ratio for each character selected by players. As we can see, most champions hover around 0.50 winrate meaning that they equally win and lose games. There are some notable exceptions however, such as Lux with a 0.83 winrate and Garen with a $0.00$ winrate. Note that winrate hides the number of games that a Champion has played in. For example, Garen was only seen in one game, of which was a loss.
+This bar chart displays the win rate as a ratio for each character selected by players. As we can see, most champions hover around 0.50 winrate meaning that they equally win and lose games. There are some notable exceptions however, such as Lux with a 0.83 winrate and Garen with a 0.00 winrate. Note that winrate hides the number of games that a Champion has played in. For example, Garen was only seen in one game, of which was a loss.
 
 
 We also made a bar chart for the amount of games where champions were banned in this data set using the Team Dataframe. 
