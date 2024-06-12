@@ -253,9 +253,9 @@ With these hyperparameters, our model achieved an testing accuracy score of 0.92
 
 ## Fairness Analysis
 
-In this section, we aim to evaluate the fairness of our model across different groups. Because dragons can easily sway the outcome of a game, we suspected that the league in which aggressive teams that often go after dragons are easier to predict. Specifically, we seek to determine: *Does my model perform worse for teams that have killed 3 or fewer dragons during a game compared to teams that have killed more than 3 dragons during a game?* To address this question, we conducted a permutation test and analyzed the resulting difference in accuracy between the two groups.
+In this section, we aim to evaluate the fairness of our model across different groups. Because dragons are limited and can easily sway the outcome of a game, we suspected games in which one team dominated the other in terms of dragons were playing in a lower league. Specifically, we seek to determine: *Does my model perform worse for teams that have killed 3 or fewer dragons during a game compared to teams that have killed more than 3 dragons during a game?* To address this question, we conducted a permutation test and analyzed the resulting difference in accuracy between the two groups.
 
-Our first group represents the players who have less than or equal to 3 dragon kills, and the other group represents those who have killed more than 3 dragons. Our evaluation metric is accuracy, and the significance level is 0.05.
+Our first group represents the players who have less than or equal to 3 dragon kills, and the other group represents those who have killed more than 3 dragons. Both groups have roughly the same sample size. Our evaluation metric is accuracy, and the significance level is 0.05.
 
 The followings are our hypothesis:
 
