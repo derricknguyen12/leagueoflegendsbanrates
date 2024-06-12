@@ -113,20 +113,14 @@ To classify whether or not a champion would be considered as someone who is freq
 
 ### NMAR Analysis
 
-In our data we believe that columns `ban1`, `ban2`, `ban3`, `ban4`, `ban5` contains some NMAR(not missing at random) because in League of Legends, a team can decide to choose if they want to ban a character or pass and not ban anyone depending on their strategy for the game.
+In our data we believe that column `doublekills` contains some NMAR(not missing at random) because they are time-sensitive. Given the intensity and fast-paced nature of some fights in a League of Legends game, it could be possible that certain things like `doublekills` could have not been recorded or overshadowed by `triplekills` or greater. To make it MAR, perhaps game specific logs, such as when a kill happens can help calculate whether or not a doublekill occured.
 
 ### Missingness Dependency
-#### Ban Missingness on League
 
-In this part, we are going to test if the missingness of bans columns depends on other columns. The two other columns that we used are `league` and `bans1-5`. The significance level we choose for both permutation tests is 0.05, and the test statistic is Total Variance Distance (TVD).
 
-First, we perform the permutation test on bans and league, and the missingness of bans on league.
+In this part, we are going to test if the missingness of the bans columns depends on other columns. The two other columns that we used are `league` and `result`. The significance level we choose for both permutation tests is 0.05, and the test statistic is Total Variance Distance (TVD).
 
-`Null Hypothesis`: Distribution of league when bans is missing is the same as the distribution of league when bans is not missing.
-
-`Alternative Hypothesis`: Distribution of league when bans is missing is NOT same as the distribution of league when bans is not missing.
-
-Below is the observed distribution of league when bans is missing and not missing with the first 15 rows of our dataframe.
+Below is the relevant **unclean** team dataframe. We converted the ban columns into a `bool` data type, indicating whether or not someone was banned in that position. We also calculated `nonban_rate`, which is the mean across the 5 bans columns and `is_missing` which is true if any of the bans are missing.
 
 | gameid    | league   |   participantid | datacompleteness   | teamname        | ban1   | ban2   | ban3   | ban4   | ban5   |   result |   nonban_rate | is_missing   |
 |:----------|:---------|----------------:|:-------------------|:----------------|:-------|:-------|:-------|:-------|:-------|---------:|--------------:|:-------------|
@@ -146,6 +140,15 @@ Below is the observed distribution of league when bans is missing and not missin
 | 2888-3129 | DCup     |             200 | partial            | Team WE         | False  | False  | False  | False  | False  |        1 |             0 | False        |
 | 2888-3130 | DCup     |             100 | partial            | Team WE         | True   | True   | True   | True   | True   |        1 |             1 | True         |
 
+#### Ban Missingness on League
+First, we perform the permutation test on bans and league, and the missingness of bans on league.
+
+`Null Hypothesis`: Distribution of league when bans is missing is the same as the distribution of league when bans is not missing.
+
+`Alternative Hypothesis`: Distribution of league when bans is missing is NOT same as the distribution of league when bans is not missing.
+
+
+
 After we performed permutation tests, we found that the observed statistic for this permutation test is: 0.33373048634043834, and the p-value is 0. The plot below shows the empirical distribution of the TVD for the test.
 
 <iframe
@@ -155,7 +158,7 @@ After we performed permutation tests, we found that the observed statistic for t
   frameborder="0"
 ></iframe>
 
-Since the p-value is less than the 0.05 significance level, we reject the null hypothesis. Thus, the missingness of banned champions depends on the league column.
+Since the p-value is less than the 0.05 significance level, we reject the null hypothesis. Thus, the missingness of banned champions depends on the league column. This means that teams in different leagues may have a higher probability to not ban champions.
 
 #### Ban Missingness on Result
 The second permutation test that we are performing is on bans and result.
@@ -173,7 +176,7 @@ After we performed permutation tests, we found that the observed statistic for t
   frameborder="0"
 ></iframe>
 
-Since our p-value .309 > 0.05, we fail to reject null hypothesis. We cannot claim that there is a relationship between missingness and result. Thus, the missingness of bans does not depend on the result column.
+Since our p-value .309 > 0.05, we fail to reject null hypothesis. We cannot claim that there is a relationship between missingness and result. Thus, whether a team won or not does not tell you anything about whether they banned or not.
 
 ## Hypothesis Testing
 
